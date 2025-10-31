@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function addTask() {
         const taskText = taskInput.value.trim();
-
         if (taskText === '') {
             alert('Please enter a task.');
             return;
@@ -21,8 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         removeButton.onclick = function() {
             taskList.removeChild(listItem);
         };
-
-       listItem.appendChild(removeButton);
+        listItem.appendChild(removeButton);
         taskList.appendChild(listItem);
         taskInput.value = '';
     }
@@ -31,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     taskInput.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
+            event.preventDefault(); 
             addTask();
         }
     });
