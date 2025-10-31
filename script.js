@@ -1,33 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Select key DOM elements
+    // Select DOM elements
     const addButton = document.getElementById('add-task-btn');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
 
     // Function to add a new task
     function addTask() {
-        const taskText = taskInput.value.trim(); // Get and trim user input
+        const taskText = taskInput.value.trim(); // Get text and remove extra spaces
 
         if (taskText === "") {
             alert("Please enter a task!");
             return;
         }
 
-        // Create <li> element
+        // Create a new <li> element
         const li = document.createElement('li');
         li.textContent = taskText;
 
-        // Create Remove button
+        // Create a new "Remove" button
         const removeBtn = document.createElement('button');
         removeBtn.textContent = "Remove";
         removeBtn.className = "remove-btn";
 
-        // Event: remove task when button is clicked
-        removeBtn.onclick = function() {
+        // Event listener for removing the task
+        removeBtn.addEventListener('click', () => {
             taskList.removeChild(li);
-        };
+        });
 
-        // Append button to li, and li to list
+        // Append button to the list item, and list item to the task list
         li.appendChild(removeBtn);
         taskList.appendChild(li);
 
@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
         taskInput.value = "";
     }
 
-    // Add task when button is clicked
+    // Add event listener for the Add Task button
     addButton.addEventListener('click', addTask);
 
-    // Add task when Enter key is pressed
-    taskInput.addEventListener('keypress', function(event) {
+    // Add event listener for pressing Enter key in input field
+    taskInput.addEventListener('keypress', (event) => {
         if (event.key === 'Enter') {
             addTask();
         }
